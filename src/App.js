@@ -4,7 +4,8 @@ import './App.css';
 
 class App extends Component {
   state = {
-    count: 0
+    count: 0,
+    numbers: []
   }
 
   _addOne = () => {
@@ -19,11 +20,21 @@ class App extends Component {
     })
   }
 
+  _add1000Numbers = () => {
+    this.setState({
+      numbers: [...this.state.numbers, ...Array(5000).keys()]
+    })
+  }
+
   render() {
     return <div>
       <Count count={this.state.count}/>
       <button onClick={this._addOne}>Add 1</button>
       <button onClick={this._addZero}>Add 0</button>
+      <button onClick={this._add1000Numbers}>Add 1000 elements</button>
+      <ul>
+        {this.state.numbers.map(number => <li> {number} </li>)}
+      </ul>
     </div>
   }
 }
