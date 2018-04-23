@@ -7,31 +7,28 @@ class App extends Component {
     count: 0
   }
 
-  _click = () => {
+  _addOne = () => {
     this.setState({
       count: this.state.count + 1
     })
   }
 
-  _nothing = () => {
+  _addZero = () => {
     this.setState({
-      count: this.state.count
+      count: this.state.count + 0
     })
   }
 
   render() {
     return <div>
       <Count count={this.state.count}/>
-      <button onClick={this._click}>+</button>
-      <button onClick={this._nothing}>Nothing</button>
+      <button onClick={this._addOne}>Add 1</button>
+      <button onClick={this._addZero}>Add 0</button>
     </div>
   }
 }
 
-class Count extends PureComponent {
-  shouldComponentUpdate(nextProps, nextState) {
-    return this.props.count !== nextProps.count;
-  }
+class Count extends Component {
   render() {
     return <h1>{this.props.count}</h1>
   }
